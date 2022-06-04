@@ -1,18 +1,15 @@
 import React from 'react';
 import '../index.css';
-import scissorsImg from '../images/icon-scissors.svg';
 
 const Scissors = ({classList, clickable, onClick}) => {
     return (
-        <img //absolute -top-10 -right-10
+        <div //absolute -top-10 -right-10 //hover:animate-pulse when clickable?
             className={`${
-                clickable ? 'cursor-pointer hover:animate-pulse' : ''
-            } ${classList} gamechoice justify-self-center self-center bg-white border-yellow-500 border-solid border-8 rounded-full p-10`}
-            src={scissorsImg}
-            alt="scissors"
+                clickable ? 'cursor-pointer' : ''
+            } ${classList} gamechoice scissors justify-self-center self-center bg-white border-yellow-500 border-solid rounded-full p-16`}
             type="Scissors"
             onClick={onClick}
-        />
+        ></div>
     );
 };
 

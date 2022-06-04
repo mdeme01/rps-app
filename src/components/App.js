@@ -62,33 +62,13 @@ function App() {
     return [
         <Header key="header" score={score} />,
         <main key="main" className="grid place-content-center">
-            <div
-                className={`${
-                    gameStarted ? 'hidden' : 'grid'
-                } choices grid-rows-2 grid-cols-2 gap-3 place-content-center`}
-            >
-                <Rock
-                    classList={'row-start-1 row-end-1 col-start-1 col-end-1'}
-                    clickable={true}
-                    onClick={(e) => startGame(e)}
-                />
-                <Paper
-                    classList={'row-start-1 row-end-1 col-start-2 col-end-2'}
-                    clickable={true}
-                    onClick={(e) => startGame(e)}
-                />
-                <Scissors
-                    classList={'row-start-2 row-end-2 col-span-2'}
-                    clickable={true}
-                    onClick={(e) => startGame(e)}
-                />
+            <div className={`${gameStarted ? 'hidden' : 'grid'} choices grid-rows-2 grid-cols-2 gap-12 place-content-center`}>
+                <Rock classList={'row-start-1 row-end-1 col-start-1 col-end-1'} clickable={true} onClick={(e) => startGame(e)} />
+                <Paper classList={'row-start-1 row-end-1 col-start-2 col-end-2'} clickable={true} onClick={(e) => startGame(e)} />
+                <Scissors classList={'row-start-2 row-end-2 col-span-2'} clickable={true} onClick={(e) => startGame(e)} />
             </div>
 
-            <div
-                className={`${
-                    counterEnded ? 'hidden' : 'grid'
-                } place-content-center uppercase tracking-widest text-lg`}
-            >
+            <div className={`${counterEnded ? 'hidden' : 'grid'} place-content-center uppercase tracking-widest text-lg`}>
                 {counterText === 'Rock' ? (
                     <Rock clickable={false} />
                 ) : counterText === 'Paper' ? (
@@ -100,7 +80,7 @@ function App() {
                 )}
             </div>
 
-            <div className={`${resultDisplayed ? 'grid' : 'hidden'} gap-3`}>
+            <div className={`${resultDisplayed ? 'grid' : 'hidden'} grid-cols-2 gap-5 md:grid-cols-3`}>
                 <div
                     className={`${
                         !playerDisplayed ? 'row-span-2' : 'self-center'
@@ -125,7 +105,7 @@ function App() {
                 <div
                     className={`${
                         replayDisplayed ? 'block' : 'hidden'
-                    } animation-fade-in col-start-2 col-end-2 row-start-2 row-end-2 row-span-2 justify-self-center self-center text-center`}
+                    } animation-fade-in col-start-2 col-end-2 row-start-2 row-end-2 row-span-2 col-span-2 justify-self-center self-center text-center`}
                 >
                     <div className="uppercase text-4xl mb-5">
                         {player === 'Rock' && house === 'Paper'

@@ -1,18 +1,15 @@
 import React from 'react';
 import '../index.css';
-import paperImg from '../images/icon-paper.svg';
 
 const Paper = ({classList, clickable, onClick}) => {
     return (
-        <img //absolute -top-10 -left-10 z-2
+        <div //absolute -top-10 -left-10 //hover:animate-pulse when clickable?
             className={`${
-                clickable ? 'cursor-pointer hover:animate-pulse' : ''
-            } ${classList} gamechoice justify-self-center self-center bg-white border-blue-500 border-solid border-8 rounded-full p-10`}
-            src={paperImg}
-            alt="paper"
+                clickable ? 'cursor-pointer' : ''
+            } ${classList} gamechoice paper justify-self-center self-center bg-white border-blue-500 border-solid rounded-full p-16`}
             type="Paper"
             onClick={onClick}
-        />
+        ></div>
     );
 };
 
