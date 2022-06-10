@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import rulesImg from '../images/image-rules.svg';
+import rulesImg from '../images/image-rules-bonus.svg';
 import closeIcon from '../images/icon-close.svg';
 import '../index.css';
 
@@ -8,9 +8,7 @@ function Footer() {
 
     useEffect(() => {
         const overlay = document.querySelector('div.overlay');
-        rulesDisplayed
-            ? (overlay.style.display = 'block')
-            : (overlay.style.display = 'none');
+        rulesDisplayed ? (overlay.style.display = 'block') : (overlay.style.display = 'none');
     });
 
     return (
@@ -29,14 +27,8 @@ function Footer() {
                     rulesDisplayed ? 'grid' : 'hidden'
                 } bg-white rounded-md p-8 absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 grid-cols-1 w-full h-full md:grid-cols-2 md:w-auto md:h-auto`}
             >
-                <div className="text-textDark text-3xl font-bold place-self-center uppercase md:row-start-1 md:row-end-1 md:col-start-1 md:col-end-1 md:justify-self-start">
-                    Rules
-                </div>
-                <img
-                    className="place-self-center col-span-2 pt-10 md:row-start-2 md:row-end-2"
-                    src={rulesImg}
-                    alt="rules"
-                />
+                <div className="text-textDark text-3xl font-bold place-self-center uppercase md:row-start-1 md:row-end-1 md:col-start-1 md:col-end-1 md:justify-self-start">Rules</div>
+                <img className="place-self-center col-span-2 pt-10 md:row-start-2 md:row-end-2" src={rulesImg} alt="rules" />
                 <img
                     onClick={() => toggleRules(false)}
                     className="place-self-center cursor-pointer md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2 md:justify-self-end"
@@ -49,17 +41,3 @@ function Footer() {
 }
 
 export default Footer;
-
-/*
-<div className="mt-5 italic">
-    Challenge by{' '}
-    <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noreferrer">
-        Frontend Mentor
-    </a>
-    . Coded by{' '}
-    <a href="https://www.frontendmentor.io/profile/Subject6735" target="_blank" rel="noreferrer">
-        Deme Maráki
-    </a>
-    .
-</div>
-*/

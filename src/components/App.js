@@ -21,6 +21,8 @@ function App() {
         return new Promise((resolve) => setTimeout(resolve, ms));
     };*/
 
+    const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+
     const startGame = async (e) => {
         setGameStarted(true);
         setPlayerDisplayed(true);
@@ -28,16 +30,17 @@ function App() {
         setReplayDisplayed(true);
         setResultDisplayed(true);
 
-        const r = Math.floor(Math.random() * 3);
         const playerChoice = e.target.getAttribute('type');
-        const houseChoice = r === 0 ? 'rock' : r === 1 ? 'paper' : 'scissors';
+        const houseChoice = choices[Math.floor(Math.random() * choices.length)];
 
         setPlayer(playerChoice);
         setHouse(houseChoice);
 
         (playerChoice === 'rock' && houseChoice === 'scissors') ||
         (playerChoice === 'paper' && houseChoice === 'rock') ||
-        (playerChoice === 'scissors' && houseChoice === 'paper')
+        (playerChoice === 'scissors' && houseChoice === 'paper') ||
+        (playerChoice === 'lizard' && houseChoice === 'spock') ||
+        (playerChoice === 'spock' && houseChoice === 'scissors')
             ? setScore(score + 1)
             : setScore(score);
     };
@@ -53,7 +56,13 @@ function App() {
     };
 
     const matchResult = (player, house) => {
-        if ((player === 'rock' && house === 'scissors') || (player === 'paper' && house === 'rock') || (player === 'scissors' && house === 'paper')) {
+        if (
+            (player === 'rock' && house === 'scissors') ||
+            (player === 'paper' && house === 'rock') ||
+            (player === 'scissors' && house === 'paper') ||
+            (player === 'lizard' && house === 'spock') ||
+            (player === 'spock' && house === 'scissors')
+        ) {
             return 'You win';
         } else if (player === house) {
             return 'Draw';
@@ -65,29 +74,21 @@ function App() {
     return [
         <Header key="header" score={score} />,
         <main key="main" className="grid place-content-center">
-            <div className={`${gameStarted ? 'hidden' : 'grid'} choices grid-rows-2 grid-cols-2 gap-12 place-content-center`}>
-                <GameChoice classList={'row-start-1 row-end-1 col-start-1 col-end-1'} clickable={true} onClick={(e) => startGame(e)} type="rock" />
-                <GameChoice classList={'row-start-1 row-end-1 col-start-2 col-end-2'} clickable={true} onClick={(e) => startGame(e)} type="paper" />
-                <GameChoice classList={'row-start-2 row-end-2 col-span-2'} clickable={true} onClick={(e) => startGame(e)} type="scissors" />
+            <div className={`${gameStarted ? 'hidden' : 'grid'} choices grid-cols-3 place-content-center`}>
+                <GameChoice classList={'row-start-3 row-end-3 col-start-3 col-end-3 relative right-12'} clickable={true} onClick={(e) => startGame(e)} type="rock" />
+                <GameChoice classList={'row-start-2 row-end-2 col-start-3 col-end-3 relative bottom-12'} clickable={true} onClick={(e) => startGame(e)} type="paper" />
+                <GameChoice classList={'row-start-1 row-end-1 col-start-2 col-end-2 relative bottom-10'} clickable={true} onClick={(e) => startGame(e)} type="scissors" />
+                <GameChoice classList={'row-start-3 row-end-3 col-start-1 col-end-1 relative left-12'} clickable={true} onClick={(e) => startGame(e)} type="lizard" />
+                <GameChoice classList={'row-start-2 row-end-2 col-start-1 col-end-1 relative bottom-12'} clickable={true} onClick={(e) => startGame(e)} type="spock" />
             </div>
 
             <div className={`${resultDisplayed ? 'grid' : 'hidden'} grid-cols-2 gap-5 md:grid-cols-3`}>
-                <div
-                    className={`${
-                        !playerDisplayed ? 'row-span-2' : 'self-center'
-                    } uppercase tracking-widest text-lg row-start-1 row-end-1 col-start-1 col-end-1 justify-self-center`}
-                >
-                    You Picked
-                </div>
+                <div className={`${!playerDisplayed ? 'row-span-2' : 'self-center'} uppercase tracking-widest text-lg row-start-1 row-end-1 col-start-1 col-end-1 justify-self-center`}>You Picked</div>
                 <div className={`${playerDisplayed ? 'block' : 'hidden'} row-start-2 row-end-2 col-start-1 col-end-1 place-self-center`}>
                     <GameChoice clickable={false} type={player} />
                 </div>
 
-                <div
-                    className={`${
-                        replayDisplayed ? 'block' : 'hidden'
-                    } col-start-2 col-end-2 row-start-2 row-end-2 row-span-2 col-span-2 justify-self-center self-center text-center`}
-                >
+                <div className={`${replayDisplayed ? 'block' : 'hidden'} col-start-2 col-end-2 row-start-2 row-end-2 row-span-2 col-span-2 justify-self-center self-center text-center`}>
                     <div className="uppercase text-4xl mb-5">{matchResult(player, house).toString()}</div>
 
                     <div
@@ -98,11 +99,7 @@ function App() {
                     </div>
                 </div>
 
-                <div
-                    className={`${
-                        !houseDisplayed ? 'row-span-2' : 'self-center'
-                    } uppercase tracking-widest text-lg row-start-1 row-end-1 col-start-3 col-end-3 justify-self-center`}
-                >
+                <div className={`${!houseDisplayed ? 'row-span-2' : 'self-center'} uppercase tracking-widest text-lg row-start-1 row-end-1 col-start-3 col-end-3 justify-self-center`}>
                     The House Picked
                 </div>
                 <div className={`${houseDisplayed ? 'block' : 'hidden'} row-start-2 row-end-2 col-start-3 col-end-3 place-self-center`}>
