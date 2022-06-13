@@ -1,0 +1,80 @@
+@import url('../index.css');
+
+.rock {
+    background-image: url('../images/icon-rock.svg');
+    border-color: hsl(349, 70%, 56%);
+}
+
+.clickable.rock {
+    grid-area: 3 / 3 / 3 / 3;
+    position: relative;
+    right: 3rem;
+}
+
+.paper {
+    background-image: url('../images/icon-paper.svg');
+    border-color: hsl(230, 89%, 65%);
+}
+
+.clickable.paper {
+    grid-area: 2 / 3 / 2 / 3;
+    position: relative;
+    bottom: 3rem;
+}
+
+.scissors {
+    background-image: url('../images/icon-scissors.svg');
+    border-color: hsl(40, 84%, 53%);
+}
+
+.clickable.scissors {
+    grid-area: 1 / 2 / 1 / 2;
+    position: relative;
+    bottom: 2.5rem;
+}
+
+.lizard {
+    background-image: url('../images/icon-lizard.svg');
+    border-color: hsl(261, 72%, 63%);
+}
+
+.clickable.lizard {
+    grid-area: 3 / 1 / 3 / 1;
+    position: relative;
+    left: 3rem;
+}
+
+.spock {
+    background-image: url('../images/icon-spock.svg');
+    border-color: hsl(189, 58%, 57%);
+}
+
+.clickable.spock {
+    grid-area: 2 / 1 / 2 / 1;
+    position: relative;
+    bottom: 3rem;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.gamechoice {
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 4rem;
+    border-style: solid;
+    border-radius: 100px;
+    border-width: 15px;
+    box-shadow: inset 0 0.5rem rgba(170, 189, 212, 0.5);
+    background-color: white;
+    justify-self: center;
+    align-self: center;
+}
+
+.choices {
+    background-image: url('../images/bg-pentagon.svg');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 3rem;
+}

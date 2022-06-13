@@ -10,15 +10,10 @@
     --grad-rock: linear-gradient(45deg, hsl(349, 71%, 52%), hsl(349, 70%, 56%));
     --grad-lizard: linear-gradient(45deg, hsl(261, 73%, 60%), hsl(261, 72%, 63%));
     --grad-cyan: linear-gradient(45deg, hsl(189, 59%, 53%), hsl(189, 58%, 57%));
-
     --grad-radial: radial-gradient(ellipse at top, hsl(214, 47%, 23%), transparent), radial-gradient(ellipse at bottom, hsl(237, 49%, 15%), transparent);
-
     --text-dark: hsl(229, 25%, 31%);
     --text-score: hsl(229, 64%, 46%);
     --header-outline: hsl(217, 16%, 45%);
-    --ff: 'Barlow Semi Condensed', sans-serif;
-    --fw-semibold: 600;
-    --fw-bold: 700;
 }
 
 *,
@@ -28,6 +23,14 @@
     border: 0;
     padding: 0;
     margin: 0;
+}
+
+#root {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    height: 100vh;
+    display: grid;
+    background-color: rgb(31, 55, 86);
+    color: white;
 }
 
 .overlay.active {
@@ -47,69 +50,83 @@
     z-index: 10;
 }
 
-#root {
-    font-family: var(--ff);
-    height: 100vh;
+.result {
     display: grid;
-    background-color: rgb(31, 55, 86);
-    color: white;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    grid-template-areas:
+        'player house'
+        'rep rep';
 }
 
-.rock {
-    background-image: url('images/icon-rock.svg');
-    border-color: hsl(349, 70%, 56%);
-}
-.paper {
-    background-image: url('images/icon-paper.svg');
-    border-color: hsl(230, 89%, 65%);
-}
-.scissors {
-    background-image: url('images/icon-scissors.svg');
-    border-color: hsl(40, 84%, 53%);
-}
-.lizard {
-    background-image: url('images/icon-lizard.svg');
-    border-color: hsl(261, 72%, 63%);
-}
-.spock {
-    background-image: url('images/icon-spock.svg');
-    border-color: hsl(189, 58%, 57%);
+.result[hidden] {
+    display: none;
 }
 
-.gamechoice {
-    background-repeat: no-repeat;
-    background-position: center center;
-    padding: 4rem;
-    border-style: solid;
-    border-radius: 100px;
-    border-width: 15px;
-    box-shadow: inset 0 0.5rem rgba(170, 189, 212, 0.5);
-    background-color: white;
+.playerpick {
+    display: grid;
+    grid-area: player;
+}
+
+.housepick {
+    display: grid;
+    grid-area: house;
+}
+
+.repeat {
+    display: grid;
+    grid-area: rep;
+}
+
+.playerpick > div:first-child,
+.housepick > div:first-child {
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
     justify-self: center;
-    align-self: center;
 }
 
-.choices {
-    background-image: url('images/bg-pentagon.svg');
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: 3rem;
+.playerpick > *,
+.housepick > * {
+    place-self: center;
 }
 
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-
-    100% {
-        opacity: 1;
-    }
+.repeat > div:first-child {
+    text-transform: uppercase;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.25rem;
 }
 
-.animation-fade-in {
-    animation: fade-in 3s linear;
+.repeat > div:last-child {
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    border-radius: 0.375rem;
+    padding: 1.25rem 3rem;
+    height: 2.5rem;
+    background-color: white;
+    color: var(--text-dark);
+}
+
+.repeat > div:last-child:hover {
+    color: rgb(239, 68, 68);
+}
+
+.repeat > * {
+    place-self: center;
+}
+
+@media (min-width: 768px) {
+    .result {
+        grid-template-rows: repeat(1, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-areas: 'player rep house';
+    }
 }
