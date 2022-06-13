@@ -9,6 +9,7 @@ function App() {
     const [player, setPlayer] = useState(null);
     const [house, setHouse] = useState(null);
     const [score, setScore] = useState(0);
+    const [resultText, setResultText] = useState('');
     const [gameStarted, setGameStarted] = useState(false);
     const [resultDisplayed, setResultDisplayed] = useState(false);
 
@@ -24,42 +25,40 @@ function App() {
         setPlayer(playerChoice);
         setHouse(houseChoice);
 
-        (playerChoice === 'rock' && houseChoice === 'scissors') ||
-        (playerChoice === 'paper' && houseChoice === 'rock') ||
-        (playerChoice === 'scissors' && houseChoice === 'paper') ||
-        (playerChoice === 'lizard' && houseChoice === 'spock') ||
-        (playerChoice === 'spock' && houseChoice === 'scissors')
-            ? setScore(score + 1)
-            : setScore(score);
+        calculateResult(playerChoice, houseChoice);
+    };
+
+    const calculateResult = (playerChoice, houseChoice) => {
+        if (
+            (playerChoice === 'rock' && (houseChoice === 'scissors' || houseChoice === 'lizard')) ||
+            (playerChoice === 'paper' && (houseChoice === 'rock' || houseChoice === 'spock')) ||
+            (playerChoice === 'scissors' && (houseChoice === 'paper' || houseChoice === 'lizard')) ||
+            (playerChoice === 'lizard' && (houseChoice === 'spock' || houseChoice === 'paper')) ||
+            (playerChoice === 'spock' && (houseChoice === 'scissors' || houseChoice === 'rock'))
+        ) {
+            setScore(score + 1);
+            setResultText('You win');
+        } else if (playerChoice === houseChoice) {
+            setScore(score);
+            setResultText('Draw');
+        } else {
+            setScore(score);
+            setResultText('You lose');
+        }
     };
 
     const newGame = () => {
         setPlayer(null);
         setHouse(null);
         setGameStarted(false);
+        setResultText('');
         setResultDisplayed(false);
-    };
-
-    const matchResult = (player, house) => {
-        if (
-            (player === 'rock' && house === 'scissors') ||
-            (player === 'paper' && house === 'rock') ||
-            (player === 'scissors' && house === 'paper') ||
-            (player === 'lizard' && house === 'spock') ||
-            (player === 'spock' && house === 'scissors')
-        ) {
-            return 'You win';
-        } else if (player === house) {
-            return 'Draw';
-        } else {
-            return 'You lose';
-        }
     };
 
     return [
         <Header key="header" score={score} />,
-        <main key="main" className="grid place-content-center">
-            <div className={`${gameStarted ? 'hidden' : 'grid'} choices grid-cols-3 place-content-center`}>
+        <main key="main" displaybg={`${!gameStarted}`}>
+            <div className="choices" hidden={gameStarted}>
                 <GameChoice clickable={true} onClick={(e) => startGame(e)} type="rock" />
                 <GameChoice clickable={true} onClick={(e) => startGame(e)} type="paper" />
                 <GameChoice clickable={true} onClick={(e) => startGame(e)} type="scissors" />
@@ -76,7 +75,7 @@ function App() {
                 </div>
 
                 <div className="repeat">
-                    <div>{matchResult(player, house).toString()}</div>
+                    <div>{resultText}</div>
                     <div onClick={() => newGame()}>Play again</div>
                 </div>
 

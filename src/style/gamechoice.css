@@ -73,8 +73,24 @@
 }
 
 .choices {
-    background-image: url('../images/bg-pentagon.svg');
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    place-content: center;
+    /* background-image: url('../images/bg-pentagon.svg');
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: 3rem;
+    background-position-y: 3rem; */
+}
+
+main[displaybg='true'] {
+    background-image: url('../images/bg-pentagon.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.choices[hidden] {
+    display: none;
+}
+
+@media (max-width: 768px) {
 }
