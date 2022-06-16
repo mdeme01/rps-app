@@ -19,7 +19,7 @@
 .clickable.paper {
     grid-area: 2 / 3 / 2 / 3;
     position: relative;
-    bottom: 3rem;
+    bottom: 2rem;
 }
 
 .scissors {
@@ -30,7 +30,6 @@
 .clickable.scissors {
     grid-area: 1 / 2 / 1 / 2;
     position: relative;
-    bottom: 2.5rem;
 }
 
 .lizard {
@@ -52,7 +51,7 @@
 .clickable.spock {
     grid-area: 2 / 1 / 2 / 1;
     position: relative;
-    bottom: 3rem;
+    bottom: 2rem;
 }
 
 .clickable {
@@ -64,22 +63,20 @@
     background-position: center center;
     padding: 4rem;
     border-style: solid;
-    border-radius: 100px;
     border-width: 15px;
-    box-shadow: inset 0 0.5rem rgba(170, 189, 212, 0.5);
+    border-radius: 100px;
+    box-shadow: inset 0 0.5rem rgba(170, 189, 212, 0.5); /*0 0.5rem rgba(94, 95, 97, 0.5);*/
     background-color: white;
     justify-self: center;
     align-self: center;
+    z-index: 10;
 }
 
 .choices {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     place-content: center;
-    /* background-image: url('../images/bg-pentagon.svg');
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: 3rem; */
+    place-self: center;
 }
 
 main[displaybg='true'] {
@@ -92,5 +89,44 @@ main[displaybg='true'] {
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 520px) {
+    .gamechoice {
+        padding: 2.5rem;
+        border-width: 10px;
+        background-size: 50%;
+    }
+
+    .clickable.rock {
+        top: 2rem;
+        left: 0.05rem;
+    }
+
+    .clickable.paper {
+        bottom: 2rem;
+        left: 2rem;
+    }
+
+    .clickable.scissors {
+        bottom: 3rem;
+    }
+
+    .clickable.lizard {
+        top: 2rem;
+        left: 0;
+    }
+
+    .clickable.spock {
+        bottom: 2rem;
+        right: 2rem;
+    }
+}
+
+@media (max-width: 374px) {
+    main[displaybg='true'] {
+        background-size: 60%;
+    }
+
+    .gamechoice {
+        position: static !important;
+    }
 }

@@ -14,7 +14,7 @@ footer {
 .rules-button {
     padding: 0.5rem 2.5rem;
     border: 2px solid white;
-    background-color: hsl(214, 47%, 23%);
+    background-color: transparent;
     color: white;
     border-radius: 0.5rem;
     text-transform: uppercase;
@@ -26,8 +26,7 @@ footer {
 }
 
 .rules-button:hover {
-    border: 2px solid var(--text-dark);
-    color: hsl(214, 47%, 23%);
+    color: var(--text-dark);
     background-color: white;
 }
 

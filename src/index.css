@@ -10,6 +10,9 @@
     --text-dark: hsl(229, 25%, 31%);
     --text-score: hsl(229, 64%, 46%);
     --header-outline: hsl(217, 16%, 45%);
+
+    --grad-bg-start: hsl(214, 47%, 23%);
+    --grad-bg-end: hsl(237, 49%, 15%);
 }
 
 *,
@@ -25,13 +28,15 @@
     font-family: 'Barlow Semi Condensed', sans-serif;
     height: 100vh;
     display: grid;
-    background-color: rgb(31, 55, 86);
+    /* background-color: rgb(31, 55, 86); */
+    background: radial-gradient(var(--grad-bg-start), var(--grad-bg-end));
     color: white;
 }
 
 main {
     display: grid;
     place-content: center;
+    margin: 2rem 0;
 }
 
 .overlay.active {
