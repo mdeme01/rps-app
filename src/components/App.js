@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import '../index.css';
-import '../style/gamechoice.css';
+//import '../index.css';
+//import '../style/gamechoice.css';
 import Header from './Header';
 import Footer from './Footer';
 import GameChoice from './GameChoice';
@@ -9,6 +9,7 @@ function App() {
     const [player, setPlayer] = useState(null);
     const [house, setHouse] = useState(null);
     const [score, setScore] = useState(0);
+    const [winner, setWinner] = useState('');
     const [resultText, setResultText] = useState('');
     const [gameStarted, setGameStarted] = useState(false);
     const [resultDisplayed, setResultDisplayed] = useState(false);
@@ -37,12 +38,15 @@ function App() {
             (playerChoice === 'spock' && (houseChoice === 'scissors' || houseChoice === 'rock'))
         ) {
             setScore(score + 1);
+            setWinner('player');
             setResultText('You win');
         } else if (playerChoice === houseChoice) {
             setScore(score);
+            setWinner('');
             setResultText('Draw');
         } else {
             setScore(score);
+            setWinner('house');
             setResultText('You lose');
         }
     };
@@ -51,6 +55,7 @@ function App() {
         setPlayer(null);
         setHouse(null);
         setGameStarted(false);
+        setWinner('');
         setResultText('');
         setResultDisplayed(false);
     };
@@ -69,7 +74,7 @@ function App() {
             <div className="result" hidden={!resultDisplayed}>
                 <div className="playerpick">
                     <div>You Picked</div>
-                    <div>
+                    <div className={winner === 'player' ? 'winner' : ''}>
                         <GameChoice clickable={false} type={player} />
                     </div>
                 </div>
@@ -81,7 +86,7 @@ function App() {
 
                 <div className="housepick">
                     <div>The House Picked</div>
-                    <div>
+                    <div className={winner === 'house' ? 'winner' : ''}>
                         <GameChoice clickable={false} type={house} />
                     </div>
                 </div>

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
 
 :root {
@@ -83,6 +87,8 @@ main {
 .repeat {
     display: grid;
     grid-area: rep;
+    position: relative;
+    top: 2rem;
 }
 
 .playerpick > div:first-child,
@@ -92,6 +98,7 @@ main {
     font-size: 1.125rem;
     line-height: 1.75rem;
     justify-self: center;
+    margin-bottom: 3rem;
 }
 
 .playerpick > *,
@@ -104,6 +111,8 @@ main {
     font-size: 2.25rem;
     line-height: 2.5rem;
     margin-bottom: 1.25rem;
+    align-self: end;
+    justify-self: center;
 }
 
 .repeat > div:last-child {
@@ -119,6 +128,8 @@ main {
     height: 2.5rem;
     background-color: white;
     color: var(--text-dark);
+    align-self: start;
+    justify-self: center;
 }
 
 .repeat > div:last-child:hover {
@@ -129,10 +140,206 @@ main {
     place-self: center;
 }
 
+.winner {
+    border-radius: 100px;
+    box-shadow: 0 0 0 50px rgba(131, 131, 131, 0.1), 0 0 0 100px rgba(170, 170, 170, 0.06), 0 0 0 150px rgba(212, 212, 212, 0.04);
+}
+
 @media (min-width: 768px) {
     .result {
         grid-template-rows: repeat(1, minmax(0, 1fr));
         grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-template-areas: 'player rep house';
+    }
+}
+
+.rock {
+    background-image: url('./images/icon-rock.svg');
+    border-color: hsl(349, 70%, 56%);
+}
+
+.clickable.rock {
+    grid-area: 3 / 3 / 3 / 3;
+    position: relative;
+    right: 3rem;
+}
+
+.paper {
+    background-image: url('./images/icon-paper.svg');
+    border-color: hsl(230, 89%, 65%);
+}
+
+.clickable.paper {
+    grid-area: 2 / 3 / 2 / 3;
+    position: relative;
+    bottom: 2rem;
+}
+
+.scissors {
+    background-image: url('./images/icon-scissors.svg');
+    border-color: hsl(40, 84%, 53%);
+}
+
+.clickable.scissors {
+    grid-area: 1 / 2 / 1 / 2;
+    position: relative;
+}
+
+.lizard {
+    background-image: url('./images/icon-lizard.svg');
+    border-color: hsl(261, 72%, 63%);
+}
+
+.clickable.lizard {
+    grid-area: 3 / 1 / 3 / 1;
+    position: relative;
+    left: 3rem;
+}
+
+.spock {
+    background-image: url('./images/icon-spock.svg');
+    border-color: hsl(189, 58%, 57%);
+}
+
+.clickable.spock {
+    grid-area: 2 / 1 / 2 / 1;
+    position: relative;
+    bottom: 2rem;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.gamechoice {
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 4rem;
+    border-style: solid;
+    border-width: 15px;
+    border-radius: 100px;
+    box-shadow: inset 0 0.5rem rgba(170, 189, 212, 0.5); /*0 0.5rem rgba(94, 95, 97, 0.5);*/
+    background-color: white;
+    justify-self: center;
+    align-self: center;
+    z-index: 10;
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    place-content: center;
+    place-self: center;
+}
+
+main[displaybg='true'] {
+    background-image: url('./images/bg-pentagon.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.choices[hidden] {
+    display: none;
+}
+
+@media (max-width: 520px) {
+    .gamechoice {
+        padding: 2.5rem;
+        border-width: 10px;
+        background-size: 50%;
+    }
+
+    .clickable.rock {
+        top: 2rem;
+        left: 0.05rem;
+    }
+
+    .clickable.paper {
+        bottom: 2rem;
+        left: 2rem;
+    }
+
+    .clickable.scissors {
+        bottom: 3rem;
+    }
+
+    .clickable.lizard {
+        top: 2rem;
+        left: 0;
+    }
+
+    .clickable.spock {
+        bottom: 2rem;
+        right: 2rem;
+    }
+}
+
+@media (max-width: 374px) {
+    main[displaybg='true'] {
+        background-size: 60%;
+    }
+
+    .gamechoice {
+        position: static !important;
+    }
+}
+
+/* Header */
+@layer components {
+    header {
+        @apply grid grid-cols-3 place-content-center gap-3 rounded-md border-solid border-2 border-gray-500 p-4 m-4 self-start justify-self-center;
+    }
+
+    img[alt='logo'] {
+        @apply justify-self-start self-center;
+    }
+
+    .score {
+        @apply grid col-start-3 justify-self-end self-center w-full h-full rounded-md bg-white text-customDarkText;
+    }
+
+    .score > div:first-child {
+        @apply place-self-center uppercase text-xl tracking-widest;
+    }
+
+    .score > div:last-child {
+        @apply place-self-center text-6xl;
+    }
+}
+
+/* Footer */
+@layer components {
+    footer {
+        @apply grid grid-cols-1 text-center place-content-center place-self-end justify-self-center w-full mb-5;
+    }
+
+    .rules-button {
+        @apply pt-2 pb-2 pl-10 pr-10 border-solid border-2 border-white bg-transparent text-white rounded-lg uppercase w-auto cursor-pointer place-self-center
+            hover:bg-white hover:text-customDarkText
+            md:mr-5 md:justify-self-end;
+    }
+
+    .rules {
+        @apply grid grid-cols-1 w-full h-full p-8 rounded-md bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30
+            md:grid-cols-2 md:w-auto md:h-auto;
+    }
+
+    .rules[hidden] {
+        @apply hidden;
+    }
+
+    .rules > div {
+        @apply text-3xl font-bold uppercase place-self-center text-customDarkText
+            md:justify-self-start md:row-start-1 md:row-end-1 md:col-start-1 md:col-end-1;
+    }
+
+    img[alt='rules'] {
+        @apply col-span-2 place-self-center
+            md:row-start-2 md:row-end-2;
+    }
+
+    img[alt='close'] {
+        @apply cursor-pointer place-self-center
+            md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2 md:justify-self-end;
     }
 }

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import img_rules from '../images/image-rules-bonus.svg';
 import img_close from '../images/icon-close.svg';
-import '../style/footer.css';
 
 function Footer() {
     const [rulesDisplayed, toggleRules] = useState(false);
