@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-//import '../index.css';
-//import '../style/gamechoice.css';
 import Header from './Header';
 import Footer from './Footer';
 import GameChoice from './GameChoice';

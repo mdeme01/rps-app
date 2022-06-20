@@ -4,290 +4,127 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
 
-:root {
-    --grad-scissors: linear-gradient(45deg, hsl(39, 89%, 49%), hsl(40, 84%, 53%));
-    --grad-paper: linear-gradient(45deg, hsl(230, 89%, 62%), hsl(230, 89%, 65%));
-    --grad-rock: linear-gradient(45deg, hsl(349, 71%, 52%), hsl(349, 70%, 56%));
-    --grad-lizard: linear-gradient(45deg, hsl(261, 73%, 60%), hsl(261, 72%, 63%));
-    --grad-cyan: linear-gradient(45deg, hsl(189, 59%, 53%), hsl(189, 58%, 57%));
-    --grad-radial: radial-gradient(ellipse at top, hsl(214, 47%, 23%), transparent), radial-gradient(ellipse at bottom, hsl(237, 49%, 15%), transparent);
-    --text-dark: hsl(229, 25%, 31%);
-    --text-score: hsl(229, 64%, 46%);
-    --header-outline: hsl(217, 16%, 45%);
-
-    --grad-bg-start: hsl(214, 47%, 23%);
-    --grad-bg-end: hsl(237, 49%, 15%);
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    border: 0;
-    padding: 0;
-    margin: 0;
-}
-
-#root {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    height: 100vh;
-    display: grid;
-    /* background-color: rgb(31, 55, 86); */
-    background: radial-gradient(var(--grad-bg-start), var(--grad-bg-end));
-    color: white;
-}
-
-main {
-    display: grid;
-    place-content: center;
-    margin: 2rem 0;
-}
-
-.overlay.active {
-    display: block;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 10;
-}
-
-.result {
-    display: grid;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-    grid-template-areas:
-        'player house'
-        'rep rep';
-}
-
-.result[hidden] {
-    display: none;
-}
-
-.playerpick {
-    display: grid;
-    grid-area: player;
-}
-
-.housepick {
-    display: grid;
-    grid-area: house;
-}
-
-.repeat {
-    display: grid;
-    grid-area: rep;
-    position: relative;
-    top: 2rem;
-}
-
-.playerpick > div:first-child,
-.housepick > div:first-child {
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    justify-self: center;
-    margin-bottom: 3rem;
-}
-
-.playerpick > *,
-.housepick > * {
-    place-self: center;
-}
-
-.repeat > div:first-child {
-    text-transform: uppercase;
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-    margin-bottom: 1.25rem;
-    align-self: end;
-    justify-self: center;
-}
-
-.repeat > div:last-child {
-    display: grid;
-    place-content: center;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    border-radius: 0.375rem;
-    padding: 1.25rem 3rem;
-    height: 2.5rem;
-    background-color: white;
-    color: var(--text-dark);
-    align-self: start;
-    justify-self: center;
-}
-
-.repeat > div:last-child:hover {
-    color: rgb(239, 68, 68);
-}
-
-.repeat > * {
-    place-self: center;
-}
-
-.winner {
-    border-radius: 100px;
-    box-shadow: 0 0 0 50px rgba(131, 131, 131, 0.1), 0 0 0 100px rgba(170, 170, 170, 0.06), 0 0 0 150px rgba(212, 212, 212, 0.04);
-}
-
-@media (min-width: 768px) {
-    .result {
-        grid-template-rows: repeat(1, minmax(0, 1fr));
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-template-areas: 'player rep house';
-    }
-}
-
-.rock {
-    background-image: url('./images/icon-rock.svg');
-    border-color: hsl(349, 70%, 56%);
-}
-
-.clickable.rock {
-    grid-area: 3 / 3 / 3 / 3;
-    position: relative;
-    right: 3rem;
-}
-
-.paper {
-    background-image: url('./images/icon-paper.svg');
-    border-color: hsl(230, 89%, 65%);
-}
-
-.clickable.paper {
-    grid-area: 2 / 3 / 2 / 3;
-    position: relative;
-    bottom: 2rem;
-}
-
-.scissors {
-    background-image: url('./images/icon-scissors.svg');
-    border-color: hsl(40, 84%, 53%);
-}
-
-.clickable.scissors {
-    grid-area: 1 / 2 / 1 / 2;
-    position: relative;
-}
-
-.lizard {
-    background-image: url('./images/icon-lizard.svg');
-    border-color: hsl(261, 72%, 63%);
-}
-
-.clickable.lizard {
-    grid-area: 3 / 1 / 3 / 1;
-    position: relative;
-    left: 3rem;
-}
-
-.spock {
-    background-image: url('./images/icon-spock.svg');
-    border-color: hsl(189, 58%, 57%);
-}
-
-.clickable.spock {
-    grid-area: 2 / 1 / 2 / 1;
-    position: relative;
-    bottom: 2rem;
-}
-
-.clickable {
-    cursor: pointer;
-}
-
-.gamechoice {
-    background-repeat: no-repeat;
-    background-position: center center;
-    padding: 4rem;
-    border-style: solid;
-    border-width: 15px;
-    border-radius: 100px;
-    box-shadow: inset 0 0.5rem rgba(170, 189, 212, 0.5); /*0 0.5rem rgba(94, 95, 97, 0.5);*/
-    background-color: white;
-    justify-self: center;
-    align-self: center;
-    z-index: 10;
-}
-
-.choices {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    place-content: center;
-    place-self: center;
-}
-
-main[displaybg='true'] {
-    background-image: url('./images/bg-pentagon.svg');
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.choices[hidden] {
-    display: none;
-}
-
-@media (max-width: 520px) {
-    .gamechoice {
-        padding: 2.5rem;
-        border-width: 10px;
-        background-size: 50%;
+@layer components {
+    *,
+    *::before,
+    *::after {
+        @apply box-border border-0 p-0 m-0;
     }
 
-    .clickable.rock {
-        top: 2rem;
-        left: 0.05rem;
+    #root {
+        @apply grid h-screen bg-mainbg-gradient font-mainfont text-white;
     }
 
-    .clickable.paper {
-        bottom: 2rem;
-        left: 2rem;
+    main {
+        @apply grid place-content-center mt-8 mb-8;
     }
 
-    .clickable.scissors {
-        bottom: 3rem;
-    }
-
-    .clickable.lizard {
-        top: 2rem;
-        left: 0;
-    }
-
-    .clickable.spock {
-        bottom: 2rem;
-        right: 2rem;
-    }
-}
-
-@media (max-width: 374px) {
     main[displaybg='true'] {
-        background-size: 60%;
+        @apply bg-pentagon-bg bg-no-repeat bg-center;
+    }
+
+    .overlay {
+        @apply hidden fixed w-full h-full top-0 bottom-0 left-0 right-0 z-10 bg-overlay-bg;
+    }
+
+    .overlay.active {
+        @apply block;
+    }
+}
+
+/* Result */
+@layer components {
+    .winner {
+        @apply rounded-full shadow-winner-circles;
+    }
+
+    .result {
+        @apply grid grid-cols-2 gap-5
+            md:grid-cols-3;
+    }
+
+    .result[hidden] {
+        @apply hidden;
+    }
+
+    .playerpick {
+        @apply grid row-start-1 row-end-1 col-start-1 col-end-1;
+    }
+
+    .housepick {
+        @apply grid row-start-1 row-end-1 col-start-2 col-end-2
+            md:col-start-3 md:col-end-3;
+    }
+
+    .repeat {
+        @apply grid row-start-2 row-end-2 col-start-1 col-end-2
+            md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2;
+    }
+
+    .repeat > *:first-child {
+        @apply place-self-center text-4xl uppercase mb-5;
+    }
+
+    .repeat > *:last-child {
+        @apply grid place-content-center place-self-center cursor-pointer uppercase text-xl rounded-md pt-3 pb-3 pl-12 pr-12 bg-white text-text-dark
+            hover:text-red-500;
+    }
+
+    .playerpick > *:first-child,
+    .housepick > *:first-child {
+        @apply text-xl uppercase tracking-widest mb-12;
+    }
+
+    .playerpick > *,
+    .housepick > * {
+        @apply place-self-center;
+    }
+}
+
+/* Game choices */
+@layer components {
+    .choices {
+        @apply grid grid-cols-3 place-self-center place-content-center;
+    }
+
+    .choices[hidden] {
+        @apply hidden;
     }
 
     .gamechoice {
-        position: static !important;
+        @apply p-14 bg-no-repeat bg-center rounded-full border-8 bg-white border-solid place-self-center shadow
+            md:p-16;
+    }
+
+    .clickable {
+        @apply cursor-pointer;
+    }
+
+    .rock {
+        @apply border-rock-gradient bg-rock-bg;
+    }
+
+    .paper {
+        @apply border-paper-gradient bg-paper-bg;
+    }
+
+    .scissors {
+        @apply border-scissors-gradient bg-scissors-bg;
+    }
+
+    .lizard {
+        @apply border-lizard-gradient bg-lizard-bg;
+    }
+
+    .spock {
+        @apply border-spock-gradient bg-spock-bg;
     }
 }
 
 /* Header */
 @layer components {
     header {
-        @apply grid grid-cols-3 place-content-center gap-3 rounded-md border-solid border-2 border-gray-500 p-4 m-4 self-start justify-self-center;
+        @apply grid grid-cols-3 place-content-center gap-3 rounded-md border-solid border-2 border-header-outline p-4 m-4 self-start justify-self-center;
     }
 
     img[alt='logo'] {
@@ -295,14 +132,14 @@ main[displaybg='true'] {
     }
 
     .score {
-        @apply grid col-start-3 justify-self-end self-center w-full h-full rounded-md bg-white text-customDarkText;
+        @apply grid col-start-3 justify-self-end self-center w-full h-full rounded-md bg-white text-text-dark;
     }
 
-    .score > div:first-child {
-        @apply place-self-center uppercase text-xl tracking-widest;
+    .score > *:first-child {
+        @apply text-text-score place-self-center uppercase text-xl tracking-widest;
     }
 
-    .score > div:last-child {
+    .score > *:last-child {
         @apply place-self-center text-6xl;
     }
 }
@@ -315,7 +152,7 @@ main[displaybg='true'] {
 
     .rules-button {
         @apply pt-2 pb-2 pl-10 pr-10 border-solid border-2 border-white bg-transparent text-white rounded-lg uppercase w-auto cursor-pointer place-self-center
-            hover:bg-white hover:text-customDarkText
+            hover:bg-white hover:text-text-dark
             md:mr-5 md:justify-self-end;
     }
 
@@ -329,13 +166,13 @@ main[displaybg='true'] {
     }
 
     .rules > div {
-        @apply text-3xl font-bold uppercase place-self-center text-customDarkText
+        @apply text-3xl font-bold uppercase place-self-center text-text-dark
             md:justify-self-start md:row-start-1 md:row-end-1 md:col-start-1 md:col-end-1;
     }
 
     img[alt='rules'] {
         @apply col-span-2 place-self-center
-            md:row-start-2 md:row-end-2;
+            md:row-start-2 md:row-end-2 md:mt-5;
     }
 
     img[alt='close'] {
