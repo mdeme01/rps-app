@@ -2,6 +2,10 @@ module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
     theme: {
         extend: {
+            screens: {
+                xs: '450px',
+            },
+
             fontFamily: {
                 mainfont: ['Barlow Semi Condensed', 'sans-serif'],
             },
@@ -17,7 +21,6 @@ module.exports = {
                 'scissors-gradient': 'hsl(39, 89%, 49%)', //'linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%))',
                 'lizard-gradient': 'hsl(261, 73%, 60%)', //'linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%))',
                 'spock-gradient': 'hsl(189, 59%, 53%)', //'linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%))',
-                //'mainbg-gradient': 'hsl(214, 47%, 23%)', //'radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%))',
             },
 
             backgroundImage: {
@@ -31,8 +34,19 @@ module.exports = {
                 'mainbg-gradient': 'radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%))',
             },
 
+            backgroundSize: {
+                '40%': '40%',
+                small: '200px',
+            },
+
             boxShadow: {
                 'winner-circles': '0 0 0 50px rgba(131, 131, 131, 0.1), 0 0 0 100px rgba(170, 170, 170, 0.06), 0 0 0 150px rgba(212, 212, 212, 0.04)',
+                'winner-circles-small': '0 0 0 20px rgba(131, 131, 131, 0.1), 0 0 0 50px rgba(170, 170, 170, 0.06), 0 0 0 80px rgba(212, 212, 212, 0.04)',
+                'circle-inner': 'inset 0 0.5rem rgba(170, 189, 212, 0.5)' /*0 0.5rem rgba(94, 95, 97, 0.5);*/,
+            },
+
+            borderWidth: {
+                10: '10px',
             },
         },
     },

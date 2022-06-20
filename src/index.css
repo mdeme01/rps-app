@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
 
@@ -20,7 +19,8 @@
     }
 
     main[displaybg='true'] {
-        @apply bg-pentagon-bg bg-no-repeat bg-center;
+        @apply bg-pentagon-bg bg-no-repeat bg-center bg-small
+            xs:bg-auto;
     }
 
     .overlay {
@@ -35,12 +35,13 @@
 /* Result */
 @layer components {
     .winner {
-        @apply rounded-full shadow-winner-circles;
+        @apply rounded-full shadow-winner-circles-small
+            sm:shadow-winner-circles;
     }
 
     .result {
         @apply grid grid-cols-2 gap-5 text-center
-            md:grid-cols-3;
+            sm:grid-cols-3;
     }
 
     .result[hidden] {
@@ -53,12 +54,12 @@
 
     .housepick {
         @apply grid row-start-1 row-end-1 col-start-2 col-end-2
-            md:col-start-3 md:col-end-3;
+            sm:col-start-3 sm:col-end-3;
     }
 
     .repeat {
         @apply grid gap-3 row-start-2 col-span-2 mt-10
-            md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2 md:mt-0;
+            sm:row-start-1 sm:row-end-1 sm:col-start-2 sm:col-end-2 sm:mt-0;
     }
 
     .repeat > *:first-child {
@@ -72,12 +73,14 @@
 
     .playerpick > *:first-child,
     .housepick > *:first-child {
-        @apply text-lg uppercase tracking-widest mt-6 row-start-2 row-end-2 md:row-start-1 md:row-end-1 md:text-xl md:mt-0 md:mb-6;
+        @apply text-sm uppercase tracking-widest mt-6 row-start-2 row-end-2
+            xs:text-lg
+            sm:row-start-1 sm:row-end-1 sm:text-xl sm:mt-0 sm:mb-6;
     }
 
     .playerpick > *:last-child,
     .housepick > *:last-child {
-        @apply row-start-1 row-end-1 md:row-start-2 md:row-end-2;
+        @apply row-start-1 row-end-1 sm:row-start-2 sm:row-end-2;
     }
 
     .playerpick > *,
@@ -97,8 +100,12 @@
     }
 
     .gamechoice {
-        @apply p-14 bg-no-repeat bg-center rounded-full border-8 bg-white border-solid place-self-center shadow
-            md:p-16;
+        @apply p-10 bg-no-repeat bg-center bg-40% rounded-full border-8 bg-white border-solid place-self-center shadow-circle-inner
+            xs:p-16 xs:border-10;
+    }
+
+    .gamechoice.blank {
+        @apply bg-none bg-slate-800 border-none;
     }
 
     .clickable {
@@ -150,7 +157,7 @@
 @layer components {
     header {
         @apply grid grid-cols-3 place-content-center gap-3 rounded-md border-solid border-2 border-header-outline p-4 m-4 self-start justify-self-center
-            md:w-2/3 md:max-w-screen-sm;
+            sm:w-2/3 sm:max-w-screen-sm;
     }
 
     img[alt='logo'] {
@@ -179,12 +186,12 @@
     .rules-button {
         @apply pt-2 pb-2 pl-10 pr-10 border-solid border-2 border-white bg-transparent text-white rounded-lg uppercase w-auto cursor-pointer place-self-center
             hover:bg-white hover:text-text-dark
-            md:mr-5 md:justify-self-end;
+            sm:mr-5 sm:justify-self-end;
     }
 
     .rules {
         @apply grid grid-cols-1 w-full h-full p-8 rounded-md bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30
-            md:grid-cols-2 md:w-auto md:h-auto;
+            sm:grid-cols-2 sm:w-auto sm:h-auto;
     }
 
     .rules[hidden] {
@@ -193,16 +200,16 @@
 
     .rules > div {
         @apply text-3xl font-bold uppercase place-self-center text-text-dark
-            md:justify-self-start md:row-start-1 md:row-end-1 md:col-start-1 md:col-end-1;
+            sm:justify-self-start sm:row-start-1 sm:row-end-1 sm:col-start-1 sm:col-end-1;
     }
 
     img[alt='rules'] {
         @apply col-span-2 place-self-center
-            md:row-start-2 md:row-end-2 md:mt-5;
+            sm:row-start-2 sm:row-end-2 sm:mt-5;
     }
 
     img[alt='close'] {
         @apply cursor-pointer place-self-center
-            md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2 md:justify-self-end;
+            sm:row-start-1 sm:row-end-1 sm:col-start-2 sm:col-end-2 sm:justify-self-end;
     }
 }
