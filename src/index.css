@@ -39,7 +39,7 @@
     }
 
     .result {
-        @apply grid grid-cols-2 gap-5
+        @apply grid grid-cols-2 gap-5 text-center
             md:grid-cols-3;
     }
 
@@ -57,12 +57,12 @@
     }
 
     .repeat {
-        @apply grid row-start-2 row-end-2 col-start-1 col-end-2
-            md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2;
+        @apply grid gap-3 row-start-2 col-span-2 mt-10
+            md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-2 md:mt-0;
     }
 
     .repeat > *:first-child {
-        @apply place-self-center text-4xl uppercase mb-5;
+        @apply self-end justify-self-center text-4xl uppercase;
     }
 
     .repeat > *:last-child {
@@ -72,7 +72,12 @@
 
     .playerpick > *:first-child,
     .housepick > *:first-child {
-        @apply text-xl uppercase tracking-widest mb-12;
+        @apply text-lg uppercase tracking-widest mt-6 row-start-2 row-end-2 md:row-start-1 md:row-end-1 md:text-xl md:mt-0 md:mb-6;
+    }
+
+    .playerpick > *:last-child,
+    .housepick > *:last-child {
+        @apply row-start-1 row-end-1 md:row-start-2 md:row-end-2;
     }
 
     .playerpick > *,
@@ -84,7 +89,7 @@
 /* Game choices */
 @layer components {
     .choices {
-        @apply grid grid-cols-3 place-self-center place-content-center;
+        @apply grid grid-rows-3 grid-cols-3 place-self-center place-content-center;
     }
 
     .choices[hidden] {
@@ -119,12 +124,33 @@
     .spock {
         @apply border-spock-gradient bg-spock-bg;
     }
+
+    .clickable.rock {
+        @apply row-start-3 row-end-3 col-start-3 col-end-3 relative right-5;
+    }
+
+    .clickable.paper {
+        @apply row-start-2 row-end-2 col-start-3 col-end-3 relative bottom-5;
+    }
+
+    .clickable.scissors {
+        @apply row-start-1 row-end-1 col-start-2 col-end-2;
+    }
+
+    .clickable.lizard {
+        @apply row-start-3 row-end-3 col-start-1 col-end-1 relative left-5;
+    }
+
+    .clickable.spock {
+        @apply row-start-2 row-end-2 col-start-1 col-end-1 relative bottom-5;
+    }
 }
 
 /* Header */
 @layer components {
     header {
-        @apply grid grid-cols-3 place-content-center gap-3 rounded-md border-solid border-2 border-header-outline p-4 m-4 self-start justify-self-center;
+        @apply grid grid-cols-3 place-content-center gap-3 rounded-md border-solid border-2 border-header-outline p-4 m-4 self-start justify-self-center
+            md:w-2/3 md:max-w-screen-sm;
     }
 
     img[alt='logo'] {
