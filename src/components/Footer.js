@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import img_rules from '../images/image-rules-bonus.svg';
+import img_rules from '../images/image-rules.svg';
 import img_close from '../images/icon-close.svg';
 
 function Footer() {
