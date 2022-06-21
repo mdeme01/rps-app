@@ -17,25 +17,6 @@ function App() {
 
     const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 
-    /* TODO: Save score to local storage. */
-
-    /*
-    useEffect(() => {
-        const updateScore = () => {
-            const savedScore = window.localStorage.getItem('score');
-            if (savedScore) {
-                scoreRef.current = savedScore;
-            }
-        };
-
-        window.addEventListener('storage', updateScore);
-
-        return () => {
-            window.removeEventListener('storage', updateScore);
-        };
-    }, []);
-    */
-
     useEffect(() => {
         if (winner === null) return;
         async function finishGame() {
@@ -56,7 +37,6 @@ function App() {
                 house_res.classList.toggle('winner', winner === 'house');
 
                 if (winner === 'player') scoreRef.current++;
-                // window.localStorage.setItem('score', scoreRef.current);
 
                 displayReplay(true);
             });
@@ -145,8 +125,5 @@ function App() {
         <Footer key="footer" />,
     ];
 }
-
-// className={winner === 'player' ? 'winner' : ''}
-// className={winner === 'house' ? 'winner' : ''}
 
 export default App;
