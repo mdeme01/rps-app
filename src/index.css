@@ -62,6 +62,10 @@
             sm:row-start-1 sm:row-end-1 sm:col-start-2 sm:col-end-2 sm:mt-0;
     }
 
+    .repeat[hidden] {
+        @apply hidden;
+    }
+
     .repeat > *:first-child {
         @apply self-end justify-self-center text-4xl uppercase;
     }
@@ -105,7 +109,7 @@
     }
 
     .gamechoice.blank {
-        @apply bg-none bg-slate-800 border-none;
+        @apply bg-none bg-slate-800 border-slate-800 shadow-none;
     }
 
     .clickable {
@@ -113,23 +117,23 @@
     }
 
     .rock {
-        @apply border-rock-gradient bg-rock-bg;
+        @apply border-rock-color bg-rock-bg;
     }
 
     .paper {
-        @apply border-paper-gradient bg-paper-bg;
+        @apply border-paper-color bg-paper-bg;
     }
 
     .scissors {
-        @apply border-scissors-gradient bg-scissors-bg;
+        @apply border-scissors-color bg-scissors-bg;
     }
 
     .lizard {
-        @apply border-lizard-gradient bg-lizard-bg;
+        @apply border-lizard-color bg-lizard-bg;
     }
 
     .spock {
-        @apply border-spock-gradient bg-spock-bg;
+        @apply border-spock-color bg-spock-bg;
     }
 
     .clickable.rock {
@@ -184,8 +188,8 @@
     }
 
     .rules-button {
-        @apply pt-2 pb-2 pl-10 pr-10 border-solid border-2 border-white bg-transparent text-white rounded-lg uppercase w-auto cursor-pointer place-self-center
-            hover:bg-white hover:text-text-dark
+        @apply pt-2 pb-2 pl-10 pr-10 border-solid border-2 border-header-outline bg-transparent text-white rounded-lg uppercase w-auto cursor-pointer place-self-center
+            hover:bg-white hover:border-white hover:text-text-dark
             sm:mr-5 sm:justify-self-end;
     }
 

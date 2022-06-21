@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import GameChoice from './GameChoice';
@@ -6,17 +6,51 @@ import GameChoice from './GameChoice';
 function App() {
     const [player, setPlayer] = useState(null);
     const [house, setHouse] = useState(null);
-    const [score, setScore] = useState(0);
-    const [winner, setWinner] = useState('');
-    const [resultText, setResultText] = useState('');
+    const [winner, setWinner] = useState(null);
+    const [resultText, setResultText] = useState(null);
+
     const [gameStarted, setGameStarted] = useState(false);
-    const [resultDisplayed, setResultDisplayed] = useState(false);
+    const [resultDisplayed, displayResult] = useState(false);
+    const [replayDisplayed, displayReplay] = useState(false);
+
+    const scoreRef = useRef(0);
 
     const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 
-    const startGame = (e) => {
+    useEffect(() => {
+        if (winner === null) return;
+        async function finishGame() {
+            const house_res = document.querySelector('#house_result');
+            const player_res = document.querySelector('#player_result');
+
+            player_res.classList.remove('winner');
+            house_res.classList.remove('winner');
+
+            house_res.querySelector('div').classList.add('blank');
+
+            await timeout(1000).then(() => {
+                house_res.querySelector('div').classList.remove('blank');
+            });
+
+            await timeout(1000).then(() => {
+                player_res.classList.toggle('winner', winner === 'player');
+                house_res.classList.toggle('winner', winner === 'house');
+
+                if (winner === 'player') scoreRef.current++;
+
+                displayReplay(true);
+            });
+        }
+        finishGame();
+    }, [winner]);
+
+    const timeout = (ms) => {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    };
+
+    const startGame = async (e) => {
         setGameStarted(true);
-        setResultDisplayed(true);
+        displayResult(true);
 
         const playerChoice = e.target.getAttribute('type');
         const houseChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -35,15 +69,12 @@ function App() {
             (playerChoice === 'lizard' && (houseChoice === 'spock' || houseChoice === 'paper')) ||
             (playerChoice === 'spock' && (houseChoice === 'scissors' || houseChoice === 'rock'))
         ) {
-            setScore(score + 1);
             setWinner('player');
             setResultText('You win');
         } else if (playerChoice === houseChoice) {
-            setScore(score);
             setWinner('');
             setResultText('Draw');
         } else {
-            setScore(score);
             setWinner('house');
             setResultText('You lose');
         }
@@ -52,14 +83,15 @@ function App() {
     const newGame = () => {
         setPlayer(null);
         setHouse(null);
+        setWinner(null);
+        setResultText(null);
         setGameStarted(false);
-        setWinner('');
-        setResultText('');
-        setResultDisplayed(false);
+        displayResult(false);
+        displayReplay(false);
     };
 
     return [
-        <Header key="header" score={score} />,
+        <Header key="header" score={scoreRef.current} />,
         <main key="main" displaybg={`${!gameStarted}`}>
             <div className="choices" hidden={gameStarted}>
                 <GameChoice clickable={true} onClick={(e) => startGame(e)} type="rock" />
@@ -72,19 +104,19 @@ function App() {
             <div className="result" hidden={!resultDisplayed}>
                 <div className="playerpick">
                     <div>You Picked</div>
-                    <div className={winner === 'player' ? 'winner' : ''}>
+                    <div id="player_result">
                         <GameChoice clickable={false} type={player} />
                     </div>
                 </div>
 
-                <div className="repeat">
+                <div className="repeat" hidden={!replayDisplayed}>
                     <div>{resultText}</div>
                     <div onClick={() => newGame()}>Play again</div>
                 </div>
 
                 <div className="housepick">
                     <div>The House Picked</div>
-                    <div className={winner === 'house' ? 'winner' : ''}>
+                    <div id="house_result">
                         <GameChoice clickable={false} type={house} />
                     </div>
                 </div>
@@ -93,5 +125,8 @@ function App() {
         <Footer key="footer" />,
     ];
 }
+
+// className={winner === 'player' ? 'winner' : ''}
+// className={winner === 'house' ? 'winner' : ''}
 
 export default App;

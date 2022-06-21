@@ -16,11 +16,11 @@ module.exports = {
                 'header-outline': 'hsl(217, 16%, 45%)',
                 'overlay-bg': 'rgba(0, 0, 0, 0.5)',
 
-                'rock-gradient': 'hsl(349, 71%, 52%)', //'linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%))',
-                'paper-gradient': 'hsl(230, 89%, 62%)', //'linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%))',
-                'scissors-gradient': 'hsl(39, 89%, 49%)', //'linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%))',
-                'lizard-gradient': 'hsl(261, 73%, 60%)', //'linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%))',
-                'spock-gradient': 'hsl(189, 59%, 53%)', //'linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%))',
+                'rock-color': 'hsl(349, 71%, 52%)', //'linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%))',
+                'paper-color': 'hsl(230, 89%, 62%)', //'linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%))',
+                'scissors-color': 'hsl(39, 89%, 49%)', //'linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%))',
+                'lizard-color': 'hsl(261, 73%, 60%)', //'linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%))',
+                'spock-color': 'hsl(189, 59%, 53%)', //'linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%))',
             },
 
             backgroundImage: {
@@ -50,5 +50,4 @@ module.exports = {
             },
         },
     },
-    plugins: [],
 };
