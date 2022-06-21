@@ -24,8 +24,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [https://subject6735.github.io/rps-app/](https://subject6735.github.io/rps-app/)
+- [Solution on Frontend Mentor](https://www.frontendmentor.io/solutions/rockpaperscissorslizardspock-with-reactjs-and-tailwindcss-VDSoyTWUEC)
+- [Live Site](https://subject6735.github.io/rps-app/)
 
 ## My process
 
