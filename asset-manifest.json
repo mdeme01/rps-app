@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/rps-app/static/css/main.56c95650.css",
+    "main.js": "/rps-app/static/js/main.478cc1ea.js",
+    "static/media/logo.svg": "/rps-app/static/media/logo.9bf8aeb80c2526dee7c67aa5c1b74ccc.svg",
+    "static/media/image-rules.svg": "/rps-app/static/media/image-rules.513320fbf32ba9e4a81fba903a77b85f.svg",
+    "static/media/icon-lizard.svg": "/rps-app/static/media/icon-lizard.0f83914cca1adc9454d1.svg",
+    "static/media/icon-paper.svg": "/rps-app/static/media/icon-paper.8b57a6b108c1b8ae8293.svg",
+    "static/media/icon-spock.svg": "/rps-app/static/media/icon-spock.f4d7eee84cf50913d739.svg",
+    "static/media/icon-scissors.svg": "/rps-app/static/media/icon-scissors.3b1a5d7eb0b2f1fd3e95.svg",
+    "index.html": "/rps-app/index.html",
+    "static/media/icon-rock.svg": "/rps-app/static/media/icon-rock.476e90a9646a87bb3645.svg",
+    "static/media/icon-close.svg": "/rps-app/static/media/icon-close.bde602ecd1a4e55e0c27137ed651e027.svg",
+    "static/media/bg-pentagon.svg": "/rps-app/static/media/bg-pentagon.1ad6d36532b75eb7d82c.svg",
+    "main.56c95650.css.map": "/rps-app/static/css/main.56c95650.css.map",
+    "main.478cc1ea.js.map": "/rps-app/static/js/main.478cc1ea.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.56c95650.css",
+    "static/js/main.478cc1ea.js"
+  ]
+}
