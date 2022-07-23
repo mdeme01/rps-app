@@ -25,7 +25,7 @@ Users should be able to:
 ### Links
 
 - [Solution on Frontend Mentor](https://www.frontendmentor.io/solutions/rockpaperscissorslizardspock-with-reactjs-and-tailwindcss-VDSoyTWUEC)
-- [Live Site](https://subject6735.github.io/rps-app/)
+- [Live Site](https://mdeme01.github.io/rps-app/)
 
 ## My process
 
