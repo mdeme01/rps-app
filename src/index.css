@@ -1,219 +1,210 @@
-@tailwind base;
-@tailwind components;
-
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
 
-@layer components {
-    *,
-    *::before,
-    *::after {
-        @apply box-border border-0 p-0 m-0;
-    }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-    #root {
-        @apply grid h-screen bg-mainbg-gradient font-mainfont text-white;
-    }
+*,
+*::before,
+*::after {
+  @apply box-border border-0 p-0 m-0;
+}
 
-    main {
-        @apply grid place-content-center mt-8 mb-8;
-    }
+#root {
+  @apply grid h-screen bg-mainbg-gradient font-mainfont text-white;
+}
 
-    main[displaybg='true'] {
-        @apply bg-pentagon-bg bg-no-repeat bg-center bg-small
+main {
+  @apply grid place-content-center mt-8 mb-8;
+}
+
+main[data-displaybg='true'] {
+  @apply bg-pentagon-bg bg-no-repeat bg-center bg-small
             xs:bg-auto;
-    }
+}
 
-    .overlay {
-        @apply hidden fixed w-full h-full top-0 bottom-0 left-0 right-0 z-10 bg-overlay-bg;
-    }
+.overlay {
+  @apply hidden fixed w-full h-full top-0 bottom-0 left-0 right-0 z-10 bg-overlay-bg;
+}
 
-    .overlay.active {
-        @apply block;
-    }
+.overlay.active {
+  @apply block;
 }
 
 /* Result */
-@layer components {
-    .winner {
-        @apply rounded-full shadow-winner-circles-small
+.winner {
+  @apply rounded-full shadow-winner-circles-small
             sm:shadow-winner-circles;
-    }
+}
 
-    .result {
-        @apply grid grid-cols-2 gap-5 text-center
+.result {
+  @apply grid grid-cols-2 gap-5 text-center
             sm:grid-cols-3;
-    }
+}
 
-    .result[hidden] {
-        @apply hidden;
-    }
+.result[hidden] {
+  @apply hidden;
+}
 
-    .playerpick {
-        @apply grid row-start-1 row-end-1 col-start-1 col-end-1;
-    }
+.playerpick {
+  @apply grid row-start-1 row-end-1 col-start-1 col-end-1;
+}
 
-    .housepick {
-        @apply grid row-start-1 row-end-1 col-start-2 col-end-2
+.housepick {
+  @apply grid row-start-1 row-end-1 col-start-2 col-end-2
             sm:col-start-3 sm:col-end-3;
-    }
+}
 
-    .repeat {
-        @apply grid gap-3 row-start-2 col-span-2 mt-10
+.repeat {
+  @apply grid gap-3 row-start-2 col-span-2 mt-10
             sm:row-start-1 sm:row-end-1 sm:col-start-2 sm:col-end-2 sm:mt-0;
-    }
+}
 
-    .repeat[hidden] {
-        @apply hidden;
-    }
+.repeat[hidden] {
+  @apply hidden;
+}
 
-    .repeat > *:first-child {
-        @apply self-end justify-self-center text-4xl uppercase;
-    }
+.repeat > *:first-child {
+  @apply self-end justify-self-center text-4xl uppercase;
+}
 
-    .repeat > *:last-child {
-        @apply grid place-content-center place-self-center cursor-pointer uppercase text-xl rounded-md pt-3 pb-3 pl-12 pr-12 bg-white text-text-dark
+.repeat > *:last-child {
+  @apply grid place-content-center place-self-center cursor-pointer uppercase text-xl rounded-md pt-3 pb-3 pl-12 pr-12 bg-white text-text-dark
             hover:text-red-500;
-    }
+}
 
-    .playerpick > *:first-child,
-    .housepick > *:first-child {
-        @apply text-sm uppercase tracking-widest mt-6 row-start-2 row-end-2
+.playerpick > *:first-child,
+.housepick > *:first-child {
+  @apply text-sm uppercase tracking-widest mt-6 row-start-2 row-end-2
             xs:text-lg
             sm:row-start-1 sm:row-end-1 sm:text-xl sm:mt-0 sm:mb-6;
-    }
+}
 
-    .playerpick > *:last-child,
-    .housepick > *:last-child {
-        @apply row-start-1 row-end-1 sm:row-start-2 sm:row-end-2;
-    }
+.playerpick > *:last-child,
+.housepick > *:last-child {
+  @apply row-start-1 row-end-1 sm:row-start-2 sm:row-end-2;
+}
 
-    .playerpick > *,
-    .housepick > * {
-        @apply place-self-center;
-    }
+.playerpick > *,
+.housepick > * {
+  @apply place-self-center;
 }
 
 /* Game choices */
-@layer components {
-    .choices {
-        @apply grid grid-rows-3 grid-cols-3 place-self-center place-content-center;
-    }
+.choices {
+  @apply grid grid-rows-3 grid-cols-3 place-self-center place-content-center;
+}
 
-    .choices[hidden] {
-        @apply hidden;
-    }
+.choices[hidden] {
+  @apply hidden;
+}
 
-    .gamechoice {
-        @apply p-10 bg-no-repeat bg-center bg-40% rounded-full border-8 bg-white border-solid place-self-center shadow-circle-inner
+.gamechoice {
+  @apply p-10 bg-no-repeat bg-center bg-40% rounded-full border-8 bg-white border-solid place-self-center shadow-circle-inner
             xs:p-16 xs:border-10;
-    }
+}
 
-    .gamechoice.blank {
-        @apply bg-none bg-slate-800 border-slate-800 shadow-none;
-    }
+.gamechoice.blank {
+  @apply bg-none bg-slate-800 border-slate-800 shadow-none;
+}
 
-    .clickable {
-        @apply cursor-pointer;
-    }
+.clickable {
+  @apply cursor-pointer;
+}
 
-    .rock {
-        @apply border-rock-color bg-rock-bg;
-    }
+.rock {
+  @apply border-rock-color bg-rock-bg;
+}
 
-    .paper {
-        @apply border-paper-color bg-paper-bg;
-    }
+.paper {
+  @apply border-paper-color bg-paper-bg;
+}
 
-    .scissors {
-        @apply border-scissors-color bg-scissors-bg;
-    }
+.scissors {
+  @apply border-scissors-color bg-scissors-bg;
+}
 
-    .lizard {
-        @apply border-lizard-color bg-lizard-bg;
-    }
+.lizard {
+  @apply border-lizard-color bg-lizard-bg;
+}
 
-    .spock {
-        @apply border-spock-color bg-spock-bg;
-    }
+.spock {
+  @apply border-spock-color bg-spock-bg;
+}
 
-    .clickable.rock {
-        @apply row-start-3 row-end-3 col-start-3 col-end-3 relative right-5;
-    }
+.clickable.rock {
+  @apply row-start-3 row-end-3 col-start-3 col-end-3 relative right-5;
+}
 
-    .clickable.paper {
-        @apply row-start-2 row-end-2 col-start-3 col-end-3 relative bottom-5;
-    }
+.clickable.paper {
+  @apply row-start-2 row-end-2 col-start-3 col-end-3 relative bottom-5;
+}
 
-    .clickable.scissors {
-        @apply row-start-1 row-end-1 col-start-2 col-end-2;
-    }
+.clickable.scissors {
+  @apply row-start-1 row-end-1 col-start-2 col-end-2;
+}
 
-    .clickable.lizard {
-        @apply row-start-3 row-end-3 col-start-1 col-end-1 relative left-5;
-    }
+.clickable.lizard {
+  @apply row-start-3 row-end-3 col-start-1 col-end-1 relative left-5;
+}
 
-    .clickable.spock {
-        @apply row-start-2 row-end-2 col-start-1 col-end-1 relative bottom-5;
-    }
+.clickable.spock {
+  @apply row-start-2 row-end-2 col-start-1 col-end-1 relative bottom-5;
 }
 
 /* Header */
-@layer components {
-    header {
-        @apply grid grid-cols-3 place-content-center gap-3 rounded-md border-solid border-2 border-header-outline p-4 m-4 self-start justify-self-center
+header {
+  @apply grid grid-cols-3 place-content-center gap-3 rounded-md border-solid border-2 border-header-outline p-4 m-4 self-start justify-self-center
             sm:w-2/3 sm:max-w-screen-sm;
-    }
+}
 
-    img[alt='logo'] {
-        @apply justify-self-start self-center;
-    }
+img[alt='logo'] {
+  @apply justify-self-start self-center;
+}
 
-    .score {
-        @apply grid col-start-3 justify-self-end self-center w-full h-full rounded-md bg-white text-text-dark;
-    }
+.score {
+  @apply grid col-start-3 justify-self-end self-center w-full h-full rounded-md bg-white text-text-dark;
+}
 
-    .score > *:first-child {
-        @apply text-text-score place-self-center uppercase text-xl tracking-widest;
-    }
+.score > *:first-child {
+  @apply text-text-score place-self-center uppercase text-xl tracking-widest;
+}
 
-    .score > *:last-child {
-        @apply place-self-center text-6xl;
-    }
+.score > *:last-child {
+  @apply place-self-center text-6xl;
 }
 
 /* Footer */
-@layer components {
-    footer {
-        @apply grid grid-cols-1 text-center place-content-center place-self-end justify-self-center w-full mb-5;
-    }
+footer {
+  @apply grid grid-cols-1 text-center place-content-center place-self-end justify-self-center w-full mb-5;
+}
 
-    .rules-button {
-        @apply pt-2 pb-2 pl-10 pr-10 border-solid border-2 border-header-outline bg-transparent text-white rounded-lg uppercase w-auto cursor-pointer place-self-center
+.rules-button {
+  @apply pt-2 pb-2 pl-10 pr-10 border-solid border-2 border-header-outline bg-transparent text-white rounded-lg uppercase w-auto cursor-pointer place-self-center
             hover:bg-white hover:border-white hover:text-text-dark
             sm:mr-5 sm:justify-self-end;
-    }
+}
 
-    .rules {
-        @apply grid grid-cols-1 w-full h-full p-8 rounded-md bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30
+.rules {
+  @apply grid grid-cols-1 w-full h-full p-8 rounded-md bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30
             sm:grid-cols-2 sm:w-auto sm:h-auto;
-    }
+}
 
-    .rules[hidden] {
-        @apply hidden;
-    }
+.rules[hidden] {
+  @apply hidden;
+}
 
-    .rules > div {
-        @apply text-3xl font-bold uppercase place-self-center text-text-dark
+.rules > div {
+  @apply text-3xl font-bold uppercase place-self-center text-text-dark
             sm:justify-self-start sm:row-start-1 sm:row-end-1 sm:col-start-1 sm:col-end-1;
-    }
+}
 
-    img[alt='rules'] {
-        @apply col-span-2 place-self-center
+img[alt='rules'] {
+  @apply col-span-2 place-self-center
             sm:row-start-2 sm:row-end-2 sm:mt-5;
-    }
+}
 
-    img[alt='close'] {
-        @apply cursor-pointer place-self-center
+img[alt='close'] {
+  @apply cursor-pointer place-self-center
             sm:row-start-1 sm:row-end-1 sm:col-start-2 sm:col-end-2 sm:justify-self-end;
-    }
 }
